@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buy and sell page</title>
+ 
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --secondary: #64748b;
+  
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body.buyandsell-page {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Modern Slider Styles */
+.buyandsell-page .slider {
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  margin-bottom: 3rem;
+}
+
+.buyandsell-page .slides {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  animation: modernSlideShow 20s ease-in-out infinite;
+}
+
+.buyandsell-page .slide {
+  width: 25%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 4rem;
+  color: white;
+  overflow: hidden;
+}
+
+.buyandsell-page .bg-image {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  transition: transform 0.8s ease;
+}
+
+.buyandsell-page .slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.7), rgba(29, 78, 216, 0.4));
+  z-index: 2;
+}
+
+.buyandsell-page .slide:hover .bg-image {
+  transform: scale(1.05);
+}
+
+.buyandsell-page .overlay-text {
+  position: relative;
+  z-index: 3;
+  max-width: 600px;
+}
+
+.buyandsell-page .overlay-text h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.buyandsell-page .overlay-text p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  margin-top: 1rem;
+  opacity: 0.95;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  line-height: 1.6;
+}
+
+/* Modern Animation */
+@keyframes modernSlideShow {
+  0%, 20% { transform: translateX(0); }
+  25%, 45% { transform: translateX(-25%); }
+  50%, 70% { transform: translateX(-50%); }
+  75%, 95% { transform: translateX(-75%); }
+  100% { transform: translateX(0); }
+}
+
+/* Professional Form Styles */
+.buyandsell-page .formsell {
+  background: var(--bg-primary);
+  padding: 3rem;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-light);
+  max-width: 1200px;
+  position: relative;
+}
+
+.buyandsell-page .formsell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.buyandsell-page .form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.buyandsell-page .form-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.buyandsell-page .form-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.buyandsell-page .formsell form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: end;
+}
+
+.buyandsell-page .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.buyandsell-page .form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.buyandsell-page .form-label i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.buyandsell-page .formsell select {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 3rem;
+  font-family: inherit;
+}
+
+.buyandsell-page .formsell select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.buyandsell-page .formsell select:hover {
+  border-color: var(--primary-light);
+}
+
+.buyandsell-page .formsell select option {
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.buyandsell-page .search-btn {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  box-shadow: var(--shadow-md);
+  font-family: inherit;
+}
+
+.buyandsell-page .search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.buyandsell-page .search-btn:active {
+  transform: translateY(0);
+}
+
+.buyandsell-page .search-btn i {
+  font-size: 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .buyandsell-page .slider {
+    height: 400px;
+    margin-bottom: 2rem;
+  }
+  
+  .buyandsell-page .slide {
+    padding: 0 2rem;
+  }
+  
+  .buyandsell-page .overlay-text h2 {
+    font-size: 2rem;
+  }
+  
+  .buyandsell-page .overlay-text p {
+    font-size: 1rem;
+  }
+  
+  .buyandsell-page .formsell {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .buyandsell-page .formsell form {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .buyandsell-page .form-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .buyandsell-page .slider {
+    height: 350px;
+  }
+  
+  .buyandsell-page .slide {
+    padding: 0 1.5rem;
+  }
+  
+  .buyandsell-page .formsell {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Loading Animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+</style>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body class="buyandsell-page">
+  
+  <!-- Hero Slider Section -->
+  <div class="slider" aria-label="Auto-sliding background image slider">
+    <div class="slides">
+      <div class="slide">
+        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="overlay-text">
+          <h2>Welcome to Wizzride Siliguri</h2>
+          <p>Your trusted partner for quality service and innovation in the automotive industry.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="overlay-text">
+          <h2>Exceptional Solutions</h2>
+          <p>Delivering cutting-edge automotive technology tailored for Siliguri's needs.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="overlay-text">
+          <h2>Community Focused</h2>
+          <p>Committed to growth and support in the Siliguri automotive community.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="bg-image" style="background-image: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="overlay-text">
+          <h2>Join Us Today</h2>
+          <p>Be part of the Wizzride family and experience the future of automotive excellence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Form Section -->
+  <div class="formsell">
+    <div class="form-header">
+      <h2 class="form-title">Find Your Perfect Vehicle</h2>
+      <p class="form-subtitle">Use our advanced search to discover the ideal car that matches your needs and budget</p>
+    </div>
+    
+    <form>
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-exchange-alt"></i>
+          Transaction Type
+        </label>
+        <select name="status" required>
+          <option value="" disabled selected>Choose an option</option>
+          <option value="buy">🔍 Looking to Buy</option>
+          <option value="sell">💰 Looking to Sell</option>
+          <option value="trade">🔄 Trade-in Available</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-car"></i>
+          Vehicle Type
+        </label>
+        <select name="type" required>
+          <option value="" disabled selected>Select vehicle type</option>
+          <option value="sedans">🚗 Sedans</option>
+          <option value="suvs">🚙 SUVs</option>
+          <option value="hatchback">🚗 Hatchbacks</option>
+          <option value="luxury">✨ Luxury Cars</option>
+          <option value="electric">⚡ Electric Vehicles</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">
+          <i class="fas fa-tag"></i>
+          Brand
+        </label>
+        <select name="brand" required>
+          <option value="" disabled selected>Select brand</option>
+          <option value="honda">Honda</option>
+          <option value="tata">Tata</option>
+          <option value="maruti">Maruti Suzuki</option>
+          <option value="hyundai">Hyundai</option>
+          <option value="toyota">Toyota</option>
+          <option value="mahindra">Mahindra</option>
+          <option value="ford">Ford</option>
+          <option value="bmw">BMW</option>
+          <option value="mercedes">Mercedes-Benz</option>
+          <option value="audi">Audi</option>
+        </select>
+      </div>
+      
+      <button type="submit" class="search-btn">
+        <i class="fas fa-search"></i>
+        Search Vehicles
+      </button>
+    </form>
+  </div>
+
+<script>
+// Form submission handling with loading state
+document.querySelector('.formsell form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const searchBtn = this.querySelector('.search-btn');
+  const btnText = searchBtn.innerHTML;
+  
+  // Show loading state
+  searchBtn.innerHTML = '<div class="loading"></div> Searching...';
+  searchBtn.disabled = true;
+  
+  // Get form data
+  const formData = new FormData(this);
+  const status = formData.get('status');
+  const type = formData.get('type');
+  const brand = formData.get('brand');
+  
+  // Simulate search API call
+  setTimeout(() => {
+    searchBtn.innerHTML = btnText;
+    searchBtn.disabled = false;
+    
+    // Here you would typically send the data to your backend
+    console.log('Search parameters:', { status, type, brand });
+    alert(`Searching for ${status} ${brand} ${type}. This would connect to your search API.`);
+  }, 2000);
+});
+
+// Add smooth hover effects to form elements
+document.querySelectorAll('.formsell select').forEach(select => {
+  select.addEventListener('focus', function() {
+    this.parentElement.style.transform = 'translateY(-2px)';
+  });
+  
+  select.addEventListener('blur', function() {
+    this.parentElement.style.transform = 'translateY(0)';
+  });
+});
+</script>
+
+</body>
+</html>
